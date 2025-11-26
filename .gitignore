@@ -5,6 +5,7 @@
 
 *.env
 *.Rproj
-
+*.html
 #outputs locaux temporaires de la pipeline de carto prédictive
 OutilsCartoPredictives/output/*
+
