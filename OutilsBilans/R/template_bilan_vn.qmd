@@ -1,5 +1,63 @@
 ---
-title: "template_bilan_vn"
-format: html
+title: "Bilan Qubs"
+format: 
+  html:
+    self-contained: true
+    toc: true
+editor: visual
+execute:
+  warning: false
 ---
+
+```{r setup, echo=FALSE, output=FALSE}
+# Lire les variables d'environnement
+readRenviron("../../.env")
+
+# Appeler les fonction du package hackathon.vn
+# Pour l'instant via chemin relatif en local
+
+# Sourcer les differents scripts du directory R, dont les libraires R
+invisible(lapply(file.path("../../../hackathon.vn/R", 
+                           dir("../../../hackathon.vn/R")), 
+                 source))
+
+df_vn <- download_from_ftp("export_qubs_aspifaune.csv")
+
+```
+
+## Tableaux de participation
+
+### Nombre de sessions par an
+
+```{r}
+tableau_participation(df_vn = df_vn)
+```
+
+### Nombre de sessions par mois
+
+```{r}
+tableau_participation(df_vn = df_vn, by_month = TRUE)
+```
+
+Possibilité de décliner les valeurs par jour, suivant une variable de regroupement
+Possibilité de compter d'autres unités de participation (comme les sites ou les structures, plutôt que les users)
+
+### Datavisualisation de la participation
+
+On peut faire passer l'output de la fonction **tableau_participation()** dans la fonction **plot_evol_participation()** pour visualiser les chiffres
+
+```{r}
+plot_evol_participation(dt = tableau_participation(df_vn = df_vn),
+                        time = "session_time",
+                        axe_y = "nb_session")
+```
+
+## Nombre de sessions dans la semaine
+
+A quel moment de la semaine les participants sont les plus actifs ?
+On utilise la fonction **plotJourDeLaSemaine()**
+
+```{r}
+plot_JourDeLaSemaine(df_vn = df_vn)
+```
 
