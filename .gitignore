@@ -6,6 +6,7 @@
 *.env
 *.Rproj
 *.html
+
+/.quarto/
 #outputs locaux temporaires de la pipeline de carto prédictive
 OutilsCartoPredictives/output/*
-

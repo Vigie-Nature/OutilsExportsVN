@@ -5,23 +5,28 @@ format:
     self-contained: true
     toc: true
 editor: visual
+params:
+  exports_name: exports_name
 execute:
   warning: false
+  cache: false
 ---
 
-```{r setup, echo=FALSE, output=FALSE}
-# Lire les variables d'environnement
-readRenviron("../../.env")
+```{r setup, echo=TRUE, output=TRUE}
+
 
 # Appeler les fonction du package hackathon.vn
 # Pour l'instant via chemin relatif en local
 
 # Sourcer les differents scripts du directory R, dont les libraires R
-invisible(lapply(file.path("../../../hackathon.vn/R", 
-                           dir("../../../hackathon.vn/R")), 
-                 source))
+invisible(
+  lapply(file.path("../../../hackathon.vn/R", 
+                   dir("../../../hackathon.vn/R")), 
+         source)
+)
 
-df_vn <- download_from_ftp("export_qubs_aspifaune.csv")
+df_vn <- download_from_ftp(params$exports_name)
+
 
 ```
 
