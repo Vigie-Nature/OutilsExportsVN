@@ -14,8 +14,14 @@ invisible(lapply(file.path("../hackathon.vn/R",
 # list all export files on server 
 exports_files <- list_ftp_files()
 
+exports_files <- exports_files[!exports_files %in% c("export_shoc.csv", 
+                                                     "export_qubs_comments.csv", 
+                                                     "export_sterf.csv")]
+
+exports_files <- exports_files[length(exports_files)]
+
 # select smallest files for test 
-exports_files <- c("export_qubs_aspifaune.csv", "export_vne_alamer.csv")
+# exports_files <- c("export_qubs_aspifaune.csv", "export_vne_alamer.csv")
 
 setwd("OutilsBilans/R/")
 # render qmd

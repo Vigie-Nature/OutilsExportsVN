@@ -10,6 +10,9 @@ params:
 execute:
   warning: false
   cache: false
+project:
+  output-dir: "../reports"
+
 ---
 
 ```{r setup, echo=TRUE, output=TRUE}
